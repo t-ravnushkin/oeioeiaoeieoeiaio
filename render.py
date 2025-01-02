@@ -50,8 +50,12 @@ for frame_id in range(FRAME_COUNT):
 with open("framestrings.pickle", "wb") as f:
     pickle.dump(framestrings, f)
 
+skips = 1
 while True:
-    for frame in framestrings:
+    for ind in range(len(framestrings)):
+        frame = framestrings[ind]
+        if ind % skips != 0:
+            continue
         cls()
         print(frame)
-        sleep(1 / FPS)
+        sleep(skips / FPS)
